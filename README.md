@@ -77,6 +77,8 @@ Java 知识点，继续完善中。
 # Tools  
 
 - IDEA
+- Maven
+- Git
 
 
 
