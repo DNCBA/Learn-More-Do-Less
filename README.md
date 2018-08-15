@@ -40,7 +40,10 @@ Java 知识点，继续完善中。
 2. 持久层框架
 	* Hibernate
 	* Mybits
-3. 微服务架构
+3. 中间件框架
+	* ActiveMQ
+	* RocketMQ
+4. 微服务架构
 	* SpringBoot
 	* SpringClod
 
