@@ -9,7 +9,7 @@ Java 知识点，继续完善中。
 如果对你有帮助请点下 `Star`，有疑问欢迎提有好的想法请提 
 
 
-| 设计模式 | 源码分析 | 框架使用 | JavaSE | JaveEE | 数据库相关 | 计算机网络 | 数据结构及算法 | 计算机组成 | 计算机操作系统 | Tools |
+| 设计模式 | 源码分析 | 框架使用 | Java语言 | 数据库相关 | 计算机基础 | Tools |
 
 ----------
 
@@ -34,21 +34,21 @@ Java 知识点，继续完善中。
 
 # 框架使用 #
 
-1. 	Struts2
-2. 	Hibernate
-3. 	Spring Data JPA
-4. 	Spring
-5. 	SpringMVC
-6. 	MyBatis
-7. 	SpringBoot
-8. 	SpringClod
+1. web层框架
+	* Struts2
+	* Spring MVC
+2. 持久层框架
+	* Hibernate
+	* Mybits
+3. 微服务架构
+	* SpringBoot
+	* SpringClod
 
-# JavaSE #
-	
-- JavaSE
-# JavaEE #
+# Java语言 #
+1. Java
+	- JavaSE
+	- JavaEE
 
-- JavaEE
 
 # 数据库相关 #
 
@@ -57,28 +57,12 @@ Java 知识点，继续完善中。
 3. Redis
 4. MongeDB
 
-# 计算机网络 
+# 计算机基础 
 
-1.  网络概述
-2.  物理层
-3.  数据链路层
-4.  网络层
-
-# 数据结构及算法
-
-1. 线性表
-2. 栈,队列和数组
-3. 串
-4. 数组和稀疏矩阵
-5. 树和二叉树
-6. 图
-7. 排序
-8. 查找
-
-
-# 计算机组成  
-
-# 计算机操作系统  
+1. 计算机网络 
+2. 数据结构及算法
+3. 计算机组成  
+4. 计算机操作系统  
 
 # Tools  
 
