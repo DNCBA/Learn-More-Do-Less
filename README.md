@@ -44,6 +44,10 @@ Java 知识点，继续完善中。
 3. 中间件框架
 	* ActiveMQ
 	* RocketMQ
+4. 搜索框架
+	* Luence
+	* Solor
+	* ElasticSearch
 4. 微服务架构
 	* SpringBoot
 	* SpringClod
@@ -56,19 +60,21 @@ Java 知识点，继续完善中。
 
 # 数据库相关 #
 
-1. MySQL
-2. ORCALE
-3. Redis
-4. MongeDB
+- 关系型数据库
+	1. MySQL
+	2. ORCALE
+- 非关系型数据库
+	1. Redis
+	2. MongeDB
 
-# 计算机基础 
+# 计算机基础 #
 
 1. 计算机网络 
 2. 数据结构及算法
 3. 计算机组成  
 4. 计算机操作系统  
 
-# Tools  
+# Tools #
 
 - IDEA
 - Maven
