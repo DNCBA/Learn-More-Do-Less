@@ -48,8 +48,6 @@
 
     5. 创建configuration，并根据configuration创建sessionFactory再创建session.根据session进行对应的操作
 
-
-
         ```java
          public class TestHbernate{
         
@@ -107,16 +105,12 @@
     }
     ```
 
-
-
     3. 在使用的地方注入这个接口，可以直接根据对应的方法命名规则进行调用。
 
     ```java
     @Autowired
     private UserRepository userRepository;
     ```
-
-
 ## Hibernate进阶
 
  * 多表关联和级联操作
@@ -168,9 +162,19 @@
 
  * 复杂条件查询
 
-    * 在持久层接口中，集成JpaSpecificationExecutor<T>接口
+    * 在持久层接口中，继承JpaSpecificationExecutor<T>接口
+    * 这个接口可以提供findAll(Specification<T>)复杂条件查询方法
+    * 在serviceImpl里面可以调用这些方法，通过实现一个Specification接口，重写其中的toPredicate(root,query,cb)方法
+    * 使用cb.like();cb.equal(“字段”，“值”)等来实现业务条件。
+    * 字段通过root.get(“字段名”).as(类型.class)------------->(在多表关联查询的时候，可以使用get("对象的引用").get("新的字段名"))
+    * 值通过对象.getXXX()获得,--------->()
+    * 最后通过cb.and(Predicate... predicates)或者cb.or()来吧条件组装起来
 
  * 分页查询及实体封装
+
+    * 在pagingAndStoreRepository接口中对简单的分页查询进行了封装，可以使用指定的方法find All(PageAble)进行查询
+    * 在service层将请求的页数和每页显示数封装成PageRequest对象，使用PageRequest.of(pageIndex,size)创建
+    * 在调用对应方法后会返回一个Page对象，通过这个对象可以获得当前页数据(getContent())，总分页数(getTotalPages())，总记录数(getTotalElements())
 
  * 自定义sql
 
