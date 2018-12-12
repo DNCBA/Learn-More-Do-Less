@@ -47,8 +47,8 @@ Java 知识点，持续迭代中。
 
 # Java语言 #
 
-1. Java
-	- JavaSE
+1. [Java](./MD/Java语言)
+	- [JavaSE](./MD/Java语言/JavaSE)
 	- JavaEE
 
 # 数据库相关 #
