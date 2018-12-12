@@ -30,10 +30,10 @@ Java 知识点，持续迭代中。
 
 1. [web层框架](./MD/框架使用/1.web层框架)
 	* Struts2
-	* Spring MVC
-2. 持久层框架
-	* Hibernate
-	* Mybits
+	* [Spring MVC](./MD/框架使用/1.web层框架/springMVC.md)
+2. [持久层框架](./MD/框架使用/2.持久层框架)
+	* [Hibernate](./MD/框架使用/2.持久层框架/hibernate.md)
+	* [Mybits](./MD/框架使用/2.持久层框架/mybatis.md)
 3. 中间件框架
 	* ActiveMQ
 	* RocketMQ
