@@ -16,7 +16,7 @@
 
 * 在工程的依赖中添加spring的核心依赖，以及springMVC的依赖
 
-  * springy依赖部分
+  * spring依赖部分
 
     ```xml
     <dependency>
