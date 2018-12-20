@@ -43,7 +43,7 @@ Java 知识点，持续迭代中。
    * Solr
    * ElasticSearch
 5. [微服务架构](./MD微服务架构)
-   * [Spring Boot](./MD微服务架构/Springboot.md)
+   * [Spring Boot](./MD/微服务架构/Springboot.md)
    * Spring Cloud
 
 # Java语言 #
