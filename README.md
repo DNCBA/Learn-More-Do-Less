@@ -31,6 +31,7 @@ Java 知识点，持续迭代中。
 1. [web层框架](./MD/框架使用/1.web层框架)
    * Struts2
    * [Spring MVC](./MD/框架使用/1.web层框架/springMVC.md)
+   * Webflux
 
 2. [持久层框架](./MD/框架使用/2.持久层框架)
    * [Hibernate](./MD/框架使用/2.持久层框架/hibernate.md)
@@ -38,9 +39,8 @@ Java 知识点，持续迭代中。
 3. 中间件框架
    * ActiveMQ
    * RocketMQ
+   * kafka
 4. 搜索框架
-   * Lucene
-   * Solr
    * ElasticSearch
 5. [微服务架构](./MD微服务架构)
    * [Spring Boot](./MD/微服务架构/Springboot.md)
