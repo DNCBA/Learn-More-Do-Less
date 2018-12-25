@@ -46,20 +46,22 @@ Java 知识点，持续迭代中。
    * [Spring Boot](./MD/微服务架构/Springboot.md)
    * Spring Cloud
 
-# Java语言 #
+# 开发语言 #
 
 1. [Java](./MD/Java语言)
-	- [JavaSE](./MD/Java语言/JavaSE)
-	- JavaEE
+  - [JavaSE](./MD/Java语言/JavaSE)
+  - JavaEE
+2. SQL
+3. Python
+4. Go
 
 # 数据库相关 #
 
 - 关系型数据库
-	1. MySQL
-	2. ORCALE
+  1. MySql
 - 非关系型数据库
-	1. Redis
-	2. MongeDB
+  1. Redis
+  2. MongeDB
 
 # 计算机基础 #
 
@@ -70,9 +72,9 @@ Java 知识点，持续迭代中。
 
 # Tools #
 
-- IDEA
-- Maven
-- Git
+- [IDEA](./MD/Tools/IDEA.md)
+- [Maven](./MD/Maven,md)
+- [Git](./MD/Git,md)
 
 
 
