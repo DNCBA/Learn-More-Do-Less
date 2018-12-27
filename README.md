@@ -73,8 +73,8 @@ Java 知识点，持续迭代中。
 # Tools #
 
 - [IDEA](./MD/Tools/IDEA.md)
-- [Maven](./MD/Tools/Maven,md)
-- [Git](./MD/Tools/Git,md)
+- [Maven](./MD/Tools/Maven.md)
+- [Git](./MD/Tools/Git.md)
 
 
 
