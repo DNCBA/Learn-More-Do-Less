@@ -51,7 +51,7 @@ Java 知识点，持续迭代中。
 1. [Java](./MD/Java语言)
 	* [JavaSE](./MD/Java语言/JavaSE)	
 	* JavaEE
-2. SQL
+2. [SQL](./MD/Java语言/SQL/SQL.md)
 3. Python
 4. Go
 
