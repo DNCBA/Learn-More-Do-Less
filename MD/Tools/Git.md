@@ -58,7 +58,7 @@
       #添加制定目录包括子目录
       git add [dir]
   #commit
-  	git commit -m [message]
+  	git commit -a -m [message]
   #branch
   	#显示所有分支
   	git branch -a
