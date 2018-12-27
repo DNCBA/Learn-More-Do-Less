@@ -49,8 +49,8 @@ Java 知识点，持续迭代中。
 # 开发语言 #
 
 1. [Java](./MD/Java语言)
-  - [JavaSE](./MD/Java语言/JavaSE)
-  - JavaEE
+	* [JavaSE](./MD/Java语言/JavaSE)	
+	* JavaEE
 2. SQL
 3. Python
 4. Go
@@ -73,8 +73,8 @@ Java 知识点，持续迭代中。
 # Tools #
 
 - [IDEA](./MD/Tools/IDEA.md)
-- [Maven](./MD/Maven,md)
-- [Git](./MD/Git,md)
+- [Maven](./MD/Tools/Maven,md)
+- [Git](./MD/Tools/Git,md)
 
 
 
