@@ -60,7 +60,7 @@ Java 知识点，持续迭代中。
 - 关系型数据库
   1. MySql
 - 非关系型数据库
-  1. Redis
+  1. [Redis](./MD/数据库相关/非关系型数据库/Redis.md)
   2. MongeDB
 
 # 计算机基础 #
