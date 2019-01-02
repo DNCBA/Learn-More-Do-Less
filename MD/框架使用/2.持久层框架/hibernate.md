@@ -181,4 +181,4 @@
     * 在repository的接口的对应方法上添加注解@Query(value=“HQL”)和@Modify
     * 编写HQL的时候，和sql一样但是省略select *。从from开始写。
        * 例子：from  实体名  where  userId = ： userId
-   *  参数传递，通过在方法形参上添加@Parm（“parameter”）,然后在HQL中通过：parameter来进行引用
+   *  参数传递，通过在方法形参上添加@Param（“parameter”）,然后在HQL中通过：parameter来进行引用

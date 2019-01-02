@@ -5,7 +5,7 @@
 1. Java历史
 	* Java1.0在1995年发布
 	* Java之父 詹姆斯 高斯林
-	* 有sun公司开发，后被Oreacle公司收购
+	* 有sun公司开发，后被Oracle公司收购
 2. Java的分类
 	* JavaSE：基础知识
 	* JavaME：嵌入式及移动端
@@ -51,7 +51,7 @@
 		* 数据类型  变量名 = 初始化值；
 5. 数据类型
 	- 基础数据类型(4类8种)
-		* 整数型：byte(1)  shout(2)   int(4)   long(8)
+		* 整数型：byte(1)  short(2)   int(4)   long(8)
 		* 浮点型：float(4)  double(8)
 		* 字符型：char(2)
 		* 布尔型：boolean(1)
