@@ -72,7 +72,7 @@
 
 * 整合spring-data-jpa
 
-    1. 编写对应的实体类在实体类上添加@Entity,@Table,@Id,@GenerateValue,@Colum,@Temporal注解进行映射配置
+    1. 编写对应的实体类在实体类上添加@Entity,@Table,@Id,@GenerateValue,@Column,@Temporal注解进行映射配置
 
     ```java
         @Entity
@@ -81,16 +81,16 @@
     
             @Id
             @GeneratedValue(strategy=Generation.AUTO)
-            @Colum(name="userId")
+            @Column(name="userId")
             private Integer userId;
     
             @Temporal(TemporalType.TIME)   //时间类字段的标注方式
             private Date time;
     
-            @Colum(name="userNaem")
+            @Column(name="userNaem")
             private String userName;
     
-            @Colum(name="password")
+            @Column(name="password")
             private String password;
     
         }
