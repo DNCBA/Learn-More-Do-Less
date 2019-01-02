@@ -22,7 +22,7 @@
         ```xml
         <hibernate-mapping>
             <class name="" table="">
-                <id name="" cloum="">
+                <id name="" colum="">
                     <generator class="uuid"></generator>
                 </id>
                 <property name="" type="" colum=""></property>
@@ -30,7 +30,7 @@
         </hibernate-mapping>
         ```
 
-    4. 编写hbernate.cfg.xml主配置文件
+    4. 编写hibernate.cfg.xml主配置文件
 
         ```xml
         <hibernate-configuration>
