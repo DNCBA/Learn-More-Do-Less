@@ -72,7 +72,7 @@
 
 * 整合spring-data-jpa
 
-    1. 编写对应的实体类在实体类上添加@Entity,@Table,@Id,@GenerateValue,@Colum,@Temppral注解进行映射配置
+    1. 编写对应的实体类在实体类上添加@Entity,@Table,@Id,@GenerateValue,@Colum,@Temporal注解进行映射配置
 
     ```java
         @Entity
