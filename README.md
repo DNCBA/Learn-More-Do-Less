@@ -38,7 +38,7 @@ Java 知识点，持续迭代中。
    * [Mybits](./MD/框架使用/2.持久层框架/mybatis.md)
 
 3. 消息中间件框架
-   * ActiveMQ
+   * [ActiveMQ](./MD/框架使用/3.消息中间件框架/ActiveMQ.md)
    * kafka
 
 4. 全文搜索引擎
@@ -49,7 +49,7 @@ Java 知识点，持续迭代中。
 
 5. [微服务架构](./MD微服务架构)
 
-   * [Spring Boot](./MD/微服务架构/Springboot.md)
+   * [Spring Boot](./MD/框架使用/5.微服务架构/Springboot.md)
    * Spring Cloud
 
 # 开发语言 #
