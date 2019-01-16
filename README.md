@@ -29,27 +29,24 @@ Java 知识点，持续迭代中。
 
 # 框架使用 #
 
-1. [web层框架](./MD/框架使用/1.web层框架)
+1. [web层框架](./MD/框架使用/web层框架)
    * [Spring MVC](./MD/框架使用/1.web层框架/springMVC.md)
    * Webflux
 
-2. [持久层框架](./MD/框架使用/2.持久层框架)
+2. [持久层框架](./MD/框架使用/持久层框架)
    * [Hibernate](./MD/框架使用/2.持久层框架/hibernate.md)
    * [Mybits](./MD/框架使用/2.持久层框架/mybatis.md)
 
-3. 消息中间件框架
-   * [ActiveMQ](./MD/框架使用/3.消息中间件框架/ActiveMQ.md)
+3. [消息中间件框架](./MD/框架使用/消息中间件框架)
+   * [ActiveMQ](./MD/框架使用/消息中间件框架/ActiveMQ.md)
    * kafka
 
 4. 全文搜索引擎
 
-   * Lucene
-
    * ElasticSearch
 
-5. [微服务架构](./MD微服务架构)
-
-   * [Spring Boot](./MD/框架使用/5.微服务架构/Springboot.md)
+5. [微服务架构](./MD/框架使用/微服务架构)
+   * [Spring Boot](./MD/框架使用/微服务架构/Springboot.md)
    * Spring Cloud
 
 # 开发语言 #
