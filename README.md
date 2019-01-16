@@ -41,9 +41,8 @@ Java 知识点，持续迭代中。
    * [ActiveMQ](./MD/框架使用/消息中间件框架/ActiveMQ.md)
    * kafka
 
-4. 全文搜索引擎
-
-   * ElasticSearch
+4. [全文搜索引擎](./MD/框架使用/全文搜索引擎)
+   * [ElasticSearch](./MD/框架使用/全文搜索引擎/ElasticSearch.md)
 
 5. [微服务架构](./MD/框架使用/微服务架构)
    * [Spring Boot](./MD/框架使用/微服务架构/Springboot.md)
