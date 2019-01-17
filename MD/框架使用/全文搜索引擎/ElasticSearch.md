@@ -98,7 +98,6 @@
          "age":14,
          "currentDate":"2018-09-01"
      }
-     
      ```
 
      查询数据
@@ -115,9 +114,32 @@
 
 * 使用java操作
 
+  * 方法1：因为elasticsearch提供了restful风格的调用接口因此可以直接使用httpclient进行操作
+
+  * 方法2：使用elasticsearch提供的jar包进行开发
+
+    ```java
+    TransportClient client = new PreBuiltTransportClient(Settings.EMPTY).
+        addTransportAddress(
+        new TransportAddress(
+            InetAddress.getByName("localhost"), 9300));
+    
+    //创建索引和添加数据（setSource()可以传递多种数据）
+    client.prepareIndex("myindex3", "test").setSource("{\"name\":\"zs\",\"age\":19}", XContentType.JSON).get();
+    //查询指定数据
+    client.prepareGet("myindex","test","1").get();
+    //删除指定数据
+    client.prepareDelete().setIndex("myindex3").setType("test").setId("1").get();
+    //查询
+    client.prepareSearch("myindex").get();
+    ```
+
 ## ElasticSearch进阶
 
 * 使用spring-data-es开发
+  * 配置好对应的信息在配置文件中
+  * 在使用的时候创建接口继承ElasticsearchRepository即可
+  * 使用方法同spring-data-jpa
 * 高级查询规则
 
 
