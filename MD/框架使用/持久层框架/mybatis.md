@@ -289,7 +289,7 @@
 
 * springboot整合mybatis
 
-  * 在项目的以来中添加mybatis
+  * 在项目的依赖中添加mybatis
 
     ```xml
     <!-- Spring Boot Mybatis 依赖 -->
