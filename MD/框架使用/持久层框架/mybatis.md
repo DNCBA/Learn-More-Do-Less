@@ -139,7 +139,7 @@
 
   1. 创建一个Maven工程
 
-  2. 添加spring和mabatis的相关依赖
+  2. 添加spring和mybatis的相关依赖
 
      ```xml
      <dependency>
@@ -289,7 +289,7 @@
 
 * springboot整合mybatis
 
-  * 在项目的以来中添加mybatis
+  * 在项目的依赖中添加mybatis
 
     ```xml
     <!-- Spring Boot Mybatis 依赖 -->
