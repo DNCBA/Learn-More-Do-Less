@@ -139,7 +139,7 @@
 
   1. 创建一个Maven工程
 
-  2. 添加spring和mabatis的相关依赖
+  2. 添加spring和mybatis的相关依赖
 
      ```xml
      <dependency>
