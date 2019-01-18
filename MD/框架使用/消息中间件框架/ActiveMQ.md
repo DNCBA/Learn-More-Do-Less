@@ -19,6 +19,58 @@
   3. 运行 直接运行activemq/bin/activemq脚本
   4. 访问控制台localhost:8161
 
+* 集群模式
+
+  * 高性能解决方案(networkconnection)
+
+    1. 修改activeMQ.xml
+
+       ```xml
+       <networkConnectors>
+           <!-- by default just auto discover the other brokers -->
+           <networkConnector name="default-nc" uri="multicast://default"/> //动态链接
+           <!-- Example of a static configuration:      //静态链接
+                   <networkConnector name="host1 and host2" uri="static://(tcp://host1:61616,tcp://host2:61616)"/>
+                   -->
+       </networkConnectors>
+       ```
+
+    2. 重启服务
+
+       * 这个时候不同的broker之间可以共同处理消息，但是有个问题是会出现消息丢失，这个时候就要设置消息回流
+
+    3. 消息回流
+
+       ```xml
+       <policyEntry queue=">" enableAudit="false">
+           <networkBridgeFilterFactory>
+               <conditionalNetworkBridgeFilterFactory replayWhenNoConsumers="true"/>
+           </networkBridgeFilterFactory>
+       </policyEntry>
+       ```
+
+  * 高可用解决方案(zookeeper+levelDB)
+
+    1. 修改配置文件
+
+       ```xml
+       <persistenceAdapter>
+           <replicatedLevelDB
+       		directory="activemq-data"     //数据存储地址
+               replicas="3"				//集群中至少有replicas/2 +1 台机器存活
+               bind="tcp://0.0.0.0:0"		//相互通讯的
+               zkAddress="zoo1.example.org:2181,zoo2.example.org:2181,zoo3.example.org:2181" //zk
+               zkPassword="password"     //zk密码
+               zkPath="/activemq/leveldb-stores"   //zk路径
+               hostname="broker1.example.org"   //name
+                              />
+       </persistenceAdapter>
+       ```
+
+    2. 原理
+
+       * 通过在zk上注册临时有序节点，来选择最小的节点作为master对外提供服务，当master宕机之后，重新选举最小的节点对外提供服务
+
 * JMS操作ActiveMQ
 
   * queue模式
@@ -119,9 +171,41 @@
     </persistenceAdapter>
     ```
 
-  * LevelDB，MQ自身提供的持久化引擎
+  * LevelDB
+
+    * 集群模式下推荐使用的持久化策略
+
+  * kahaDB
+
+    * 默认的持久化策略，基于文件系统的
 
 * ActiveMQ消息签收和分发策略
+
+  * 订阅策略
+
+    * 持久订阅
+
+      * 持久订阅的消费者在，离线状态下也不会丢失这段时间的消息，当消费者再次上线的时候MQ会主动将这段时间的消息进行推送。
+
+        ```java
+        connection.setClientID("clientId");  //首先需要设置id
+        Session session =  connection.createSession();
+        Topic topic = session.createTopic("topicName");
+        //设置持久订阅
+        MessageConsumer consumer = session.createDurableSubscriber(topic,"clientId"); 
+        ```
+
+    * 非持久订阅
+
+      * 非持久订阅的消费者，如果在离线状态下就会丢失这段时间的消息。这是默认的p/s订阅策略
+
+        ```java
+        connection.setClientID("clientId");  //首先需要设置id
+        Session session =  connection.createSession();
+        Topic topic = session.createTopic("topicName");
+        //普通订阅
+        MessageConsumer consumer = session.createConsumer(topic); 
+        ```
 
   * 签收策略
 
@@ -136,6 +220,17 @@
     Session.SESSION_TRANSACTED;
     ```
 
+  * Ack_Type
+
+    ```java
+    DELIVERED_ACK_TYPE = 0    //消息"已接收"，但尚未处理结束
+    STANDARD_ACK_TYPE = 2    //"标准"类型,通常表示为消息"处理成功"，broker端可以删除消息了
+    POSION_ACK_TYPE = 1    //消息"错误",通常表示"抛弃"此消息
+    REDELIVERED_ACK_TYPE = 3   // 消息需"重发"
+    INDIVIDUAL_ACK_TYPE = 4   // 表示只确认"单条消息",无论在任何ACK_MODE下    
+    UNMATCHED_ACK_TYPE = 5   // BROKER间转发消息时,接收端"拒绝"消息
+    ```
+
   * 分发策略
 
     * topic
@@ -143,7 +238,6 @@
       2. 有序：按照订阅的顺序进行发送
       3. 权重：根据权重进行发送
       4. 默认：按照订阅者列表的顺序进行发送
-    * queue
 
 * ActiveMQ事物相关
 
