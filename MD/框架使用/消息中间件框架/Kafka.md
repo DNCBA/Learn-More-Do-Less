@@ -58,7 +58,7 @@
 
     * partation是kafka存储数据的真正位置，也是kafka高性能的秘密之一。为了克服磁盘io的瓶颈，kafka通过顺序写的操作来提高数据的写入速率，因此partation的写入方式就是追加顺序写。通过记录offset来确定消费的消息
 
-    ![partation](http://kafka.apache.org/20/images/log_anatomy.png)
+    ![partation](http://kafka.apache.org/20/images/log_consumer.png)
 
 * java API操作
 
