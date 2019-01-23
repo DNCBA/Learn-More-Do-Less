@@ -39,7 +39,7 @@ Java 知识点，持续迭代中。
 
 3. [消息中间件框架](./MD/框架使用/消息中间件框架)
    * [ActiveMQ](./MD/框架使用/消息中间件框架/ActiveMQ.md)
-   * kafka
+   * [kafka](./MD/框架使用/消息中间件框架/Kafka.md)
 
 4. [全文搜索引擎](./MD/框架使用/全文搜索引擎)
    * [ElasticSearch](./MD/框架使用/全文搜索引擎/ElasticSearch.md)

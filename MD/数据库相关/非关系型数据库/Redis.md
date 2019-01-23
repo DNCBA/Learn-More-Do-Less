@@ -18,7 +18,7 @@
 
     1.  [下载](https://redis.io/download)
     2. 解压 tar -xvf redis-*.tar.gz
-    3. 编译make & make install (如果没有安装gcc会报错，使用 yum install gcc)
+    3. 编译make &make test& make install   PREFIX=dir (如果没有安装gcc会报错，使用 yum install gcc)
     4. 整理：将redis.conf和redis-server,redis-cli复制到指定的目录(/usr/local/redis)
     5. 启动服务：/usr/local/redis/bin/redis-server  /user/local/redis/etc/redis.conf
     6. 登陆：/user/lcoal/redis/bin/redis-cli  -h lcoalhost -p 6379
