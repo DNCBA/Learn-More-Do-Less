@@ -46,19 +46,19 @@
 
   * topic
 
-    * topic对于kafka是一个逻辑分区，其实在硬盘上存储的是将topic分别存储在partation中，数据真实存储的地方是partation中,数据的存储流程大致为：
+    * topic对于kafka是一个逻辑分区，其实在硬盘上存储的是将topic分别存储在partition中，数据真实存储的地方是partition中,数据的存储流程大致为：
 
       1. 生产者发送数据到kafka
-      2. kafka接收到消息后，根据路由策略将选择消息存储在哪个partation中
-      3. 确定后将数据追加到指定partation后完成存储
+      2. kafka接收到消息后，根据路由策略将选择消息存储在哪个partition中
+      3. 确定后将数据追加到指定partition后完成存储
 
       ![topic](http://kafka.apache.org/20/images/log_anatomy.png)
 
-  * partation
+  * partition
 
-    * partation是kafka存储数据的真正位置，也是kafka高性能的秘密之一。为了克服磁盘io的瓶颈，kafka通过顺序写的操作来提高数据的写入速率，因此partation的写入方式就是追加顺序写。通过记录offset来确定消费的消息
+    * partition是kafka存储数据的真正位置，也是kafka高性能的秘密之一。为了克服磁盘io的瓶颈，kafka通过顺序写的操作来提高数据的写入速率，因此partition的写入方式就是追加顺序写。通过记录offset来确定消费的消息
 
-    ![partation](http://kafka.apache.org/20/images/log_consumer.png)
+      ​	![partition](http://kafka.apache.org/20/images/log_consumer.png)
 
 * java API操作
 
