@@ -135,3 +135,8 @@
      //获得topic列表
      Set<String> topics = adminClient.listTopics().names().get();
      ```
+
+## kafka进阶
+
+* connect
+* stream

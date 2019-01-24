@@ -3,8 +3,6 @@ Java 知识点，持续迭代中。
 
 如果对你有帮助请点下 `Star`，有疑问欢迎提有好的想法请提 
 
-| 设计模式 | 源码分析 | 框架使用 | Java语言 | 数据库相关 | 计算机基础 | Tools |
-
 ----------
 
 # 设计模式 #
@@ -60,7 +58,7 @@ Java 知识点，持续迭代中。
 # 数据库相关 #
 
 - 关系型数据库
-  1. MySql
+  1. [MySql](./MD/数据库相关/关系型数据库/MySql.md)
 - 非关系型数据库
   1. [Redis](./MD/数据库相关/非关系型数据库/Redis.md)
   2. MongeDB
@@ -75,8 +73,13 @@ Java 知识点，持续迭代中。
 # Tools #
 
 - [IDEA](./MD/Tools/IDEA.md)
+
 - [Maven](./MD/Tools/Maven.md)
+
 - [Git](./MD/Tools/Git.md)
+
+- Nginx
+
 
 
 
