@@ -61,7 +61,7 @@ Java 知识点，持续迭代中。
   1. [MySql](./MD/数据库相关/关系型数据库/MySql.md)
 - 非关系型数据库
   1. [Redis](./MD/数据库相关/非关系型数据库/Redis.md)
-  2. MongeDB
+  2. [Mongodb](./MD/数据库相关/非关系型数据库/Mongodb.md)
 
 # 计算机基础 #
 

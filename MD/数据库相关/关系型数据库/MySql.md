@@ -109,8 +109,65 @@
 
 * 配置
 
-  * server.xml
+  * server.xml：配置用户相关信息
 
-  * schema.xml
+    ```xml
+    <user name="root">
+        <property name="password">123456</property>
+        <property name="schemas">TESTDB</property>
+    
+        <!-- 表级 DML 权限设置 -->
+        <!-- 		
+      <privileges check="false">
+       <schema name="TESTDB" dml="0110" >
+        <table name="tb01" dml="0000"></table>
+        <table name="tb02" dml="1111"></table>
+       </schema>
+      </privileges>		
+       -->
+    </user>
+    ```
+
+  * schema.xml：配置逻辑表相关
+
+    ```xml
+    <schema name="TESTDB" checkSQLschema="false" sqlMaxLimit="100">   //逻辑数据库
+        //逻辑表水平拆分 （dataNode：表示数据库源，rule：表示水平拆分规则）          
+        <table name="travelrecord" dataNode="dn1,dn2,dn3" rule="auto-sharding-long" />  
+        //全局表
+        <table name="company" primaryKey="ID" type="global" dataNode="dn1,dn2,dn3" />
+    	//关联子表
+        <table name="customer" primaryKey="ID" dataNode="dn1,dn2"
+               rule="sharding-by-intfile">
+            <childTable name="orders" primaryKey="ID" joinKey="customer_id"
+                        parentKey="id">
+                <childTable name="order_items" joinKey="order_id"
+                            parentKey="id" />
+            </childTable>
+            <childTable name="customer_addr" primaryKey="ID" joinKey="customer_id"
+                        parentKey="id" />
+        </table>
+    
+    </schema>
+    //数据源配置
+    <dataNode name="dn1" dataHost="localhost1" database="db1" />
+    <dataNode name="dn2" dataHost="localhost1" database="db2" />
+    <dataNode name="dn3" dataHost="localhost1" database="db3" />
+    
+    <dataHost name="localhost1" maxCon="1000" minCon="10" balance="0"
+              writeType="0" dbType="mysql" dbDriver="native" switchType="1"  slaveThreshold="100">
+        <heartbeat>select user()</heartbeat>
+        //读写分离
+        <writeHost host="hostM1" url="localhost:3306" user="root"
+                   password="123456">
+            <readHost host="hostS2" url="192.168.1.200:3306" user="root" password="xxx" />
+        </writeHost>
+        //高可用
+        <writeHost host="hostS1" url="localhost:3316" user="root"
+                   password="123456" />
+    </dataHost>
+    
+    ```
+
 
 
