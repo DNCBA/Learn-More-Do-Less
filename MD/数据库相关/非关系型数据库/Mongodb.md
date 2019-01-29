@@ -20,7 +20,8 @@
 
      ```shell
      ./mongod --dbpath /data/dir     //启动
-     ./mongo localhost:27017         //连接mongodb
+     ./mongod -f /config/dir    //指定配置文件启动
+     ./mongo --host=localhost --port=27017         //连接mongodb
      ```
 
 * 核心概念
@@ -103,5 +104,5 @@
         }
         ```
 
-        
+* 集群搭建
 
