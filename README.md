@@ -73,12 +73,15 @@ Java 知识点，持续迭代中。
 # Tools #
 
 - [IDEA](./MD/Tools/IDEA.md)
-
 - [Maven](./MD/Tools/Maven.md)
-
 - [Git](./MD/Tools/Git.md)
-
 - [Nginx](./MD/Tools/Nginx.md)
+
+# 杂谈
+
+1. [从架构演变到展望未来](./MD/杂谈/从架构演变到展望未来.md)
+2. [从Synchronized 到 cas ](./MD/杂谈/从Synchronized到cas.md)
+3. [从数据一致性到zab协议](./MD/杂谈/从数据一致性到zab协议.md)
 
 
 
