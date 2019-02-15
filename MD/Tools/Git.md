@@ -90,7 +90,47 @@
   	git revert [commit]
   ```
 
-## 
+# 进阶操作
+
+* 多ssh账户配置
+
+  1. 创建多个公私匙对。用于不用账户验证。
+
+  2. 将对应公匙部署到对应的服务上
+
+  3. 在~/.ssh/目录系下创建config文件
+
+     ```yaml
+     # user1
+     Host codehub.devcloud.huaweicloud.com   //决定你git@xxx的xxx部分，包括克隆链接部分也要进行修改
+     	HostName codehub.devcloud.huaweicloud.com   //服务的域名
+     	User cwx618143    //你想要显示的用户名
+     	IdentityFile ~/.ssh/id_rsa_application_1    //该服务对应的私匙
+     # user2
+     Host wlcb
+     	HostName codehub.devcloud.huaweicloud.com
+     	User cwx618143
+     	IdentityFile ~/.ssh/id_rsa_application_2
+     # user3
+     Host github.com     
+     	HostName github.com
+     	User dncba
+     	IdentityFile ~/.ssh/id_rsa_application_3
+     ```
+
+  4. 测试连通性
+
+     ```shell
+     ssh -T git@Host          //Host为你配置的host
+     ```
+
+     
+
+
+
+
+
+
 
 
 
