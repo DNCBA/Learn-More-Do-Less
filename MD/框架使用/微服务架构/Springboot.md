@@ -108,3 +108,12 @@
     2. 编写实体对应的repository接口，并且根据业务需求继承对应的Repository接口，和JpaSpecificationExecutor接口
     3. 通过spring注入来获得这个对象，并进行对应的操作即可，（参见：hibernate框架使用进阶）
 
+* 打包部署
+
+  * 使用 Jar 包发布
+    * 正常配置插件指定主 Main 之后就可以直接打成 Jar 包。
+    * 通过 Java -jar  xxxx.jar 就可以发布。可以通过 --追加配置
+  * 使用 War 包发布
+    * 在 Jar 包发布的基础上，在 pom 里添加<package>war</>,并让启动类继承 SpringBootServletInitalizer即可
+    * 通过发布到 Tomcat 上就可以运行
+
