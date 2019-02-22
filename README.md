@@ -84,7 +84,7 @@ Java 知识点，持续迭代中。
 3. [从数据一致性到zab协议](./MD/杂谈/从数据一致性到zab协议.md)
 4. 从 Spring 自动组装到 SpringBoot
 5. [从 Jvm 内存模型到调优](./MD/杂谈/从Jvm内存模型到调优.md)
-6. 从索引到 MySql 调优
+6. [从索引到 MySql 调优](./MD/杂谈/从索引到 MySql 调优.md)
 
 
 
