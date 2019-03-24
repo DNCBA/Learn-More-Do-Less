@@ -124,7 +124,12 @@
      ssh -T git@Host          //Host为你配置的host
      ```
 
-     
+* 高级操作
+
+  * merge
+  * rebase
+  * HEAD
+  * cherry-pick
 
 
 
