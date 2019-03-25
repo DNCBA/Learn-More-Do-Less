@@ -87,7 +87,7 @@
      | 用户授权 | GRANT privileges ON databasename.tablename TO 'username'@'host' | privileges:代表操作权限( select,insert,update,all )<br />databasename/tablename:代表数据库和表明,可以用 * 来统配 |
      | 查看用户 | SELECT host,user from mysql.user;                            | host:代表可以登录的 host<br />user:代表可以登录的用户名      |
      | 刷新权限 | flush privileges;                                            | 只有刷新了权限后才能使用                                     |
-     | 更改密码 | set password for 'username'@'host' = password('newPassword') | 有时候会出现远程连接工具不能登录,可以尝试用 old_password ('password') |
+     | 更改密码 | set password for 'username'@'host' = password('newPassword') | 有时候会出现远程连接工具不能登录,可以尝试用 ALTER USER  'username'@'host' IDENTIFIED WITH mysql_native_password BY 'password'; |
 
   2. 数据备份导入
 
