@@ -126,12 +126,14 @@
 
 * 高级操作
 
-  * merge
-  * rebase
-  * HEAD
-  * cherry-pick
+  | 命令                  | 含义                                          |
+  | --------------------- | --------------------------------------------- |
+  | Git merge branchName  | 将指定分支 branchName 合并到当前的分支上      |
+  | Git rebase branchName | 将当前分支的提交复制到指定的 brancName 分支上 |
+  | Git checkout hash     | 将 HEAD 移动到指定的位置                      |
+  | Git checkout HEAD^    | 相对当前位置移动 HEAD 的位置                  |
 
-
+  
 
 
 
