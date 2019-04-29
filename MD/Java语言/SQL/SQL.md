@@ -105,4 +105,27 @@
      | 设置表的指令集       | ALTER TABLE tableName CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci; |                                               |
      | 设置字段的指令集     | ALTER TABLE tableNameCHANGE colum colum_type CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci; | colum:代表字段名<br />colum_type:代表字段类型 |
 
-     
+* Json 操作
+
+  * 在 Mysql 5.7 版本之后提供了对 json 文件的支持，这样大大方便了数据操作的灵活性，为了方便使用和记忆所以总结一些常用的 json 函数方便使用
+  
+    ```sql
+    # 数据库初始化 sql
+    CREATE TABLE `t_user` (`id` int(11) NOT NULL AUTO_INCREMENT,`user_info` json DEFAULT NULL, PRIMARY KEY (`id`)); 
+  
+    # 导入数据
+    insert into t_user (id, user_info) values (1,JSON_OBJECT('name','zhangsan','age',18,'address','sh'));
+    ```
+    
+    | 功能描述                 | 函数语法                                                     | 使用样例                                                     | 返回值说明                                                   |
+    | ------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+    | 查找 json 中某个路径的值 | json_extract(josn,path)<br />json-> 'path'<br />json->> 'path' | select json_extract(user_info,'$.name') as name from t_user;<br />select user_info -> 'path' from t_user | 如果路径不存在则返回 null 否则返回对应的数据                 |
+    | 判断某个路径是否存在     | json_contains_path(json,path)                                | select * from t_user where json_contains_path(user_info,'one','$.age') = 1; | 如果路径存在则返回 1，不存在返回 0，如果有 null 参数返回 null |
+    | 判断某个路径下是否是某值 | json_contains(json,value,path)                               | select * from t_user where json_contains(user_info,'"zhangsan"','$.age') = 1; | 如果值相同返回1，值不相同返回0，路径不存在返回null。         |
+    | 插入对应的json 数据      | json_insert(json,path,value)                                 | update t_user set user_info = json_insert(user_info,'$.phone','120') where id = 2; | 如果指定路径不存在则插入数据，否则不进行操作                 |
+    | 替换对应的json 数据      | json_replace(json,path,value)                                | update t_user set user_info = json_replace(user_info,'$.name','james') where id= 2; | 替换对应的数据，如果存在则替换否则不进行操作                 |
+    | 指定对应路径的json 数据  | json_set(json.path,value)                                    | update t_user set user_info = json_set(user_info,'$.nickname','{"age":13}') where id = 2; | 直接设定对应的值不管路径是否存在                             |
+    | 移除指定路径的 json 数据 | json_remove(json,path)                                       | update t_user set user_info = json_remove(user_info,'$.nickname') where id = 2; | 移除对应的路径，如果路径不存在则不进行操作                   |
+    
+  * 注意：在使用 json_set / insert / replace 操作 json 数据的时候，如果 value 是 json 字符串，需要使用 cast  / convert 函数进行转换。否则 mysql 会按照字符串进行处理。
+
