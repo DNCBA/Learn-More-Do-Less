@@ -28,7 +28,7 @@
 
 * 远程连接工具  ：下载 [iterm2](https://www.iterm2.com/downloads.html) 进行安装, 连接命令
 
-  ```she
+  ```shell
   ssh -p <port> <username>@<ip>
   ```
 
