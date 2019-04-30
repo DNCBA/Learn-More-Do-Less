@@ -104,12 +104,12 @@
      # user1
      Host codehub.devcloud.huaweicloud.com   //决定你git@xxx的xxx部分，包括克隆链接部分也要进行修改
      	HostName codehub.devcloud.huaweicloud.com   //服务的域名
-     	User cwx618143    //你想要显示的用户名
+     	User dncba    //你想要显示的用户名
      	IdentityFile ~/.ssh/id_rsa_application_1    //该服务对应的私匙
      # user2
      Host wlcb
      	HostName codehub.devcloud.huaweicloud.com
-     	User cwx618143
+     	User dncba
      	IdentityFile ~/.ssh/id_rsa_application_2
      # user3
      Host github.com     
@@ -126,13 +126,14 @@
 
 * 高级操作
 
-  | 命令                  | 含义                                          |
-  | --------------------- | --------------------------------------------- |
-  | Git merge branchName  | 将指定分支 branchName 合并到当前的分支上      |
-  | Git rebase branchName | 将当前分支的提交复制到指定的 brancName 分支上 |
-  | Git checkout hash     | 将 HEAD 移动到指定的位置                      |
-  | Git checkout HEAD^    | 相对当前位置移动 HEAD 的位置                  |
-
+  | 命令                  | 含义                                     |
+  | --------------------- | ---------------------------------------- |
+  | Git merge branchName  | 将指定分支 branchName 合并到当前的分支上 |
+  | Git rebase branchName | 将当前分支的提交在指定分支上进行重演     |
+  | Git checkout hash     | 将 HEAD 移动到指定的位置                 |
+  | Git checkout HEAD^    | 相对当前位置移动 HEAD 的位置             |
+| git cherry-pick hash  | 将指定的提交拿到当前分支                 |
+  
   
 
 
