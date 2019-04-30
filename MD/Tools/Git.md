@@ -132,7 +132,7 @@
   | Git rebase branchName | 将当前分支的提交在指定分支上进行重演     |
   | Git checkout hash     | 将 HEAD 移动到指定的位置                 |
   | Git checkout HEAD^    | 相对当前位置移动 HEAD 的位置             |
-| git cherry-pick hash  | 将指定的提交拿到当前分支                 |
+	| Git cherry-pick hash  | 将指定的提交拿到当前分支                 |
   
   
 
