@@ -128,4 +128,34 @@
     | 移除指定路径的 json 数据 | json_remove(json,path)                                       | update t_user set user_info = json_remove(user_info,'$.nickname') where id = 2; | 移除对应的路径，如果路径不存在则不进行操作                   |
     
   * 注意：在使用 json_set / insert / replace 操作 json 数据的时候，如果 value 是 json 字符串，需要使用 cast  / convert 函数进行转换。否则 mysql 会按照字符串进行处理。
+  
+* 分析函数
+
+  * 语法
+
+    ```sql
+    funcation_name(<argument>,<argument>..) over(<partition by clause> <order by clause>)
+    ```
+
+    Function_name() : 函数名称
+
+    argument：参数
+
+    over():开窗函数
+
+  * 常见分析函数
+
+    | 函数                                     | 功能             |
+    | ---------------------------------------- | ---------------- |
+    | count() over()                           | 统计行数         |
+    | sum() over()                             | 统计总和         |
+    | avg() over()                             | 统计平均值       |
+    | min() over()/max() over()                | 统计最大值最小值 |
+    | rank() over()                            | 跳跃排序         |
+    | dense_rank()                             | 连续排序         |
+    | row_number() over()                      | 排序无重复值     |
+    | first_value() over()/last_value() over() | 取出对应数据     |
+    |                                          |                  |
+
+    
 
