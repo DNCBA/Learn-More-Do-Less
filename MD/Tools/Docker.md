@@ -17,7 +17,9 @@
 
      1. ![整体架构](https://docs.docker.com/engine/images/engine-components-flow.png)
 
-     2. 使用容器需要内核支持的技术
+     2. ![](https://docs.docker.com/engine/images/architecture.svg)
+
+     3. 使用容器需要内核支持的技术
 
         1. namespaces名称空间
 
