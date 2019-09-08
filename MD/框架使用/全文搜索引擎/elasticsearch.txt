@@ -1,0 +1,146 @@
+#删除索引
+DELETED /school
+
+#创建索引
+PUT /school
+{
+	"settings":{
+		"index":{
+			"number_of_shards":5,
+			"number_of_replicas":1
+		}
+	}
+} 
+
+#创建类型
+PUT /school/student/1
+{
+	"name":"zhangsan",
+	"age":25,
+	"course":"elasticsearch",
+	"study_date":"2019-09-04T20:00:00+0800"
+}
+
+#自动生成Id
+POST /school/student/
+{
+	“name”:"lisi",
+	"age":26,
+	"course":"springboot",
+	"study_date":"2019-09-04T20:00:00+0800"
+}
+
+#创建一个全新的文档，如果文档存在，则报错
+POST /school/student/1?op_type=create
+{
+	“name”:"lisi",
+	"age":26,
+	"course":"springboot",
+	"study_date":"2019-09-04T20:00:00+0800"
+} 
+
+#获取文档信息
+GET /school/student/1
+
+#检查文档是否存在 存在返回200 不存在返回404
+HEAD /school/student/1
+
+#获取文档，指定字段，逗号分隔
+GET /school/student/1?_source=name,age
+#仅获取source字段内容
+GET /school/student/1/_source
+
+#跟新文档，注意version的变化
+#在elasticsearch内部文档是不可改变的，如果想更新现有文档，需要重建索引或进行替换
+PUT /school/student/1
+{
+	"name":"zhangsan",
+	"age":25,
+	"course":"elasticsearch",
+	"study_date":"2019-09-04T20:00:00+0800"
+}
+
+#通过 _update API 的方式更新部分字段
+POST /school/student/1/_update
+{
+	"doc":{
+		"age":28,
+		"sex":"male"
+	}
+}
+
+#---------------------并发控制-----------------#
+
+#指定版本进行更新
+PUT /school/student/1?version=1
+{
+	data
+}
+
+#采用外部版本号，可以更新比当前版本号大的为胆囊
+PUT /school/student/1?version=1&version_type=external
+{
+	data
+}
+
+#新版本增加update_by_query
+POST /school/_update_by_query?
+
+
+#--------------------------------------#
+#删除文档
+DELETE /school/school/student/1
+#不可以删除类型
+DELETE /school/student
+#可以直接删除一个索引
+DELETE /school
+
+#新版本增加了delete_by_query
+
+#--------------------------------------#
+#空搜索
+GET /_search 默认返回前10条
+#获取指定类型的文档
+GET /school/student/_search
+#分页查询
+GET /school/student/_search?size=2&from=2
+
+#轻量搜索
+GET /school/student/_search?q=name:zhangsan  #name字段值为zhangsan的值
+GET /school/student/_search?q=elasticsearch    所有字段值为elasticsearch的数据
+GET /school/student/_search?q
+
+#批量获取scoll scan
+
+#创建游标
+GET /school/_search?screll=1m
+{
+	"query":{
+		"match_all":{}
+	}
+	"sort"[
+		"_doc"
+	],
+	"size":2
+}
+
+#根据游标取数据
+GET /_search/screll
+{
+	"scroll":"1m",
+	"scroll_id":"id_info"
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
