@@ -65,7 +65,11 @@
   	#新建分支
   	git branch [branch-name]
   	#切换分支
-  	git checkout [branche-name]
+  	git checkout [branch-name]
+  	#创建远程分支
+  	git push origin [origin-branch-name]:[local-branch-name]
+    #删除远程分支
+    git push origin --delete [branch-name]
   #tag
   	#查看所有tag
   	git tag
