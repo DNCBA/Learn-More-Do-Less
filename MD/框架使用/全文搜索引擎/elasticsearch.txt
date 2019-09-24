@@ -1,3 +1,38 @@
+#获取某个索引的映射信息
+GET /indexName/_mapping
+
+#获取某个索引下投个type的映射信息
+GET /indexName/_mapping/typeName
+
+#获取多个索引下的指定映射信息
+GET /index*/_mapping/typeName
+
+#创建别名
+PUT /indexName/_alias/indexAliasName
+
+#查看所有的别名
+GET /_alias
+
+#查看某个索引下的别名
+GET /indexName/_alias
+
+#todo 地理位置搜索
+
+#动态映射
+
+#模板
+
+#内置标准分词器
+POST _analyze
+{
+	"analyze":"standard",
+	"text":"i am a school"
+}
+#自定义分词器
+
+
+
+
 #删除索引
 DELETED /school
 
