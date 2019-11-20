@@ -53,7 +53,7 @@ Java 知识点，持续迭代中。
 	* [JavaSE](./MD/Java语言/JavaSE)	
 	* JavaEE
 2. [SQL](./MD/Java语言/SQL/SQL.md)
-3. [Python](./MD/Java语言/Python/Python.md)
+3. [Python](./MD/Java语言/Python/python.md)
 
 # 数据库相关 #
 
