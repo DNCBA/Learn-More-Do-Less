@@ -141,6 +141,5 @@
   * 在使用的时候创建接口继承ElasticsearchRepository即可
   * 使用方法同spring-data-jpa
 * 高级查询规则
-
-
+  * [查询语法](./elasticsearch.txt)
 
