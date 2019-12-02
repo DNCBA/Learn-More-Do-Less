@@ -88,6 +88,7 @@
      | 查看用户 | SELECT host,user from mysql.user;                            | host:代表可以登录的 host<br />user:代表可以登录的用户名      |
      | 刷新权限 | flush privileges;                                            | 只有刷新了权限后才能使用                                     |
      | 更改密码 | set password for 'username'@'host' = password('newPassword') | 有时候会出现远程连接工具不能登录,可以尝试用 ALTER USER  'username'@'host' IDENTIFIED WITH mysql_native_password BY 'password'; |
+     | 删除用户 | drop user education_rw@'%';                                  |                                                              |
 
   2. 数据备份导入
 
