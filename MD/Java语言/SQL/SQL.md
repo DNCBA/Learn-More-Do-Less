@@ -8,6 +8,7 @@
 * sql分类：
   * DML:数据操作语言(CRUD)
   * DDL:数据定义语言
+  * DCL:数据控制语句,操作数据对象权限
 * 登录命令：
   * mysql -uusername -ppassword -hhost -Ddatabase
 
