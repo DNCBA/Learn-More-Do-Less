@@ -64,12 +64,12 @@
   	git branch -a
   	#新建分支
   	git branch [branch-name]
-  	#切换分支
-  	git checkout [branch-name]
+  	#新建+切换分支
+  	git checkout -b [branch-name]
   	#创建远程分支
   	git push origin [origin-branch-name]:[local-branch-name]
-    #删除远程分支
-    git push origin --delete [branch-name]
+    #删除本地分支
+    git branch -d [branch-name]
   #tag
   	#查看所有tag
   	git tag
