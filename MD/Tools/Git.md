@@ -80,6 +80,12 @@
   #查看
   	git log
   #remote
+  	#查看当前项目地址
+  	git remote -v
+  	#解绑当前项目和远程地址
+  	git remote rm origin
+  	#新绑定当前项目和远程项目资质
+  	git remote add origin project-url
   	#退送到远程分支
   	git push [remote] [branch]
   	git push [remote] [branch] --force
