@@ -34,7 +34,7 @@ Java 知识点，持续迭代中。
 
 2. [持久层框架](./MD/框架使用/持久层框架)
    * [Hibernate](./MD/框架使用/持久层框架/hibernate.md)
-   * [Mybits](./MD/框架使用/持久层框架/mybatis.md)
+   * [Mybatis](./MD/框架使用/持久层框架/mybatis.md)
 
 3. [消息中间件框架](./MD/框架使用/消息中间件框架)
    * [ActiveMQ](./MD/框架使用/消息中间件框架/ActiveMQ.md)
