@@ -54,7 +54,10 @@
       keepalive_timeout  65;   //连接超时时间
   
       upstream mysvr{
-          server 192.168.0.1:8080;
+          ip_hash   //iphash模式
+          server 192.168.0.1:8080 weight=10;  //权重策略
+          server 192.168.0.2:8080;
+          server 192.168.0.3:8090;
       }
       
       server {
@@ -75,45 +78,177 @@
   }
   ```
 
-* 负载均衡配置
+## Nginx进阶
 
-  * 负载策略
-    * 默认为轮询机制，还可以选择权重，iphash，urlhash等方式
+- 静态服务器
 
-  ```javascript
-  worker_processes  1;  //配置工作的线程数
-  events {   
-      use epoll  //事件驱动模型   
-      worker_connections  1024;   //允许链接的数量
-  }
-  http {
-      include       mime.types;
-      default_type  application/octet-stream;
-      sendfile        on;
-      keepalive_timeout  65;
-  
-      upstream mysvr{
-          ip_hash   //iphash模式
-          server 192.168.0.1:8080 weight=10;  //权重策略
-          server 192.168.0.2:8080;
-          server 192.168.0.3:8090;
-      }
-      
-      server {
-          listen       8090;
-          server_name  localhost;
-          location / {
-              proxy_pass  http://mysvr;
-              root   html/dist;
-              index  index.html index.htm;
-          }
-          error_page   500 502 503 504  /50x.html;
-          location = /50x.html {
-              root   html;
-          }
-  	}
-  }
-  ```
+  - Nginx 本身就可以作为高性能的静态服务器来进行使用
+
+    ```javascript
+    server {
+    	listen 80; //监听的端口
+    	server_name static.com;  //虚拟服务器名称
+        
+        location / {
+            root /path;  //本地静态资源的路径
+            index index.html; //主页面名称
+        }
+    }
+    ```
+
+- 反向代理负载均衡
+
+  - Nginx 因为其采用的多线程和 I/O 多路复用技术使其具备高性能，并且其可以方便的将请求路由到不同的服务器上，所以也经常被使用做反向代理服务器
+
+    ```javascript
+    upstream myserver { //默认路由策略采用轮询
+    	ip_hash; // 路由策略采用iphash
+    	server ip:port wight=10;  //路由策略采用权重
+    	server ip:port;
+    }
+    
+    server {
+    	listen 80;
+    	server_name proxy.server;
+    	
+    	location / {
+    		proxy_pass http://myserver;
+    	}
+    }
+    
+    ```
+
+- 配置详解
+
+  - location 匹配规则
+
+    ```javascript
+    //优先级 精准匹配 > 正则匹配 > 普通匹配（最长优先）
+    //语法 location [=|~|~*|^~] uri {}
+    // = 精准匹配
+    // ~ 正则匹配区分大小写
+    // ~* 正则匹配不区分大小写
+    // ^~ 头匹配匹配最多的部分 比正则优先级高
+    // 空 普通匹配，最长字符串匹配
+    
+    location = / {
+    	return 1;
+    }
+    
+    localtion / {
+    	return 2;
+    }
+    
+    location ~ \.[js|jpg|css|html]${
+        return 3;
+    }
+    
+    localtion ^~ /api/cc/aa {
+        return 4;
+    }
+    
+    
+    host/  -> 1
+    host   -> 2
+    host/a.js -> 3
+    host/api/cc/aa/dd.js -> 4
+    
+    ```
+
+  - 压缩缓存
+
+    ```javascript
+    //压缩和缓存可以有效提升用户使用体验
+    //压缩配置
+    server{
+        gzip on;  //开启压缩
+        gzip_min_length 1k;  //最小的压缩大小
+        gzip_comp_level 1;   //压缩等级
+        gzip_types application/javascript test/css text/xml;  //压缩的类型
+        gzip_vary on; //再相应头里面增加accept_tye gzip
+        
+        listen 80;
+        server_name abc.com;
+        
+        location / {
+            root /path;
+        }
+    }
+    
+    //缓存配置
+    server{
+        listen 80;
+        server_name abc.com;
+        
+        lcation ~ \.[png|css|js]$ {
+            root /path;
+            expires 30s;   //设置缓存时间
+        }
+    }
+    
+    ```
+
+  - rewrite 转发+防盗链
+
+    ```javascript
+    //语法 rewrite regex replacement [flag];
+    //regex 为uri匹配的对应的正则
+    //replacement为对应替换的内容
+    //flag为对应的配置 
+    //last:停止rewrite检测，如果没有匹配到，会继续匹配location
+    //break:停止rewrite检测，如果没有匹配到直接404
+    //redirect 302临时重定向
+    //permanent 301永久重定向
+    
+    //案例
+    
+    
+    //正则替换
+    server{
+        listen 80;
+        server_name abc.com;
+        
+        location / {
+            rewrite ^/api/(.*)$ /$1 break;  //()用于匹配括号之间的内容，用 $1 $2 进行调用
+        	proxy_pass http://abc.com
+        }
+        
+        location ~ \.[js|htm|css]$ {
+            rewrite ^/static/ /new-static/ break;
+        }
+    }
+    
+    //if语句判断（可以使用全局变量 $hsot $uri $args $request_method)
+    server{
+        listen 80;
+        server_name localhost;
+        
+        if($host ~ www.baidu.com)  //正则匹配
+            rewrite ^/(.*) /api/$1 break;
+        	proxy_pass 
+        }
+    
+    	if($request_method = GET){  //数据匹配
+            rewrite ^http\:\/\/(.*) https:// break; 
+        }
+    }
+    
+    //防盗链
+    server{
+        listen 80;
+        server_name localhost;
+        
+        location ~* \.[js|css]${
+            valid_referers none blocked deame1 demo2;
+            if($valid_referers){
+                return 404;
+            }
+        }
+    }
+    
+    
+    
+    ```
 
 * 前后台分离部署解决跨域配置
 
@@ -146,7 +281,7 @@
             }
             
             location /api{
-                rewrite ^/api/(.*)$/$1 break;
+                rewrite ^/api/(.*)$ $1 break;
                 proxy_pass http://mysvr
             }
             
