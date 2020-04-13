@@ -29,14 +29,21 @@
 
   ```xml
   <plugin>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-maven-plugin</artifactId>
-      <configuration>
-          <mainClass>com.huawei.benchmark.MyApplication</mainClass>
-      </configuration>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-maven-plugin</artifactId>
+    <configuration>
+      <mainClass>${start-class}</mainClass>
+    </configuration>
+    <executions>
+      <execution>
+        <goals>
+          <goal>repackage</goal>
+        </goals>
+      </execution>
+    </executions>
   </plugin>
-  ```
-
+```
+  
 * 在pom中添加需要的组件，比如web依赖
 
   ```xml
