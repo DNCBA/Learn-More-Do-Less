@@ -29,6 +29,12 @@
 
   ​	[性能测试报告](https://github.com/mkocikowski/esbench)
 
+* kibana&dsl
+
+    [kibana](./kibana.txt)
+
+   [elasticsearch](./elasticsearch.txt)
+
 * 使用场景：
 
   1. Github使用ES对1300亿行代码进行查询；
@@ -95,16 +101,17 @@
          "age":14,
          "currentDate":"2018-09-01"
      }
+     ```
   ```
      
   查询数据
      
      ```json
      ip:9200/索引名/文档名/_search   GET
-     ```
-     
+  ```
+
      删除索引
-     
+
      ```json
      ip:9200/索引名     DELETE
      ```
