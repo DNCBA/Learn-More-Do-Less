@@ -16,21 +16,12 @@ GET /_alias
 #查看某个索引下的别名
 GET /indexName/_alias
 
-#todo 地理位置搜索
-
-#动态映射
-
-#模板
-
 #内置标准分词器
 POST _analyze
 {
-	"analyze":"standard",
+	"analyzer":"standard",
 	"text":"i am a school"
 }
-#自定义分词器
-
-
 
 
 #删除索引
@@ -132,7 +123,7 @@ DELETE /school
 
 #新版本增加了delete_by_query
 
-#--------------------------------------#
+#-----------------游标---------------------#
 #空搜索
 GET /_search 默认返回前10条
 #获取指定类型的文档
@@ -145,10 +136,10 @@ GET /school/student/_search?q=name:zhangsan  #name字段值为zhangsan的值
 GET /school/student/_search?q=elasticsearch    所有字段值为elasticsearch的数据
 GET /school/student/_search?q
 
-#批量获取scoll scan
+#批量获取scroll scan
 
 #创建游标
-GET /school/_search?screll=1m
+GET /school/_search?scroll=1m
 {
 	"query":{
 		"match_all":{}
@@ -160,11 +151,246 @@ GET /school/_search?screll=1m
 }
 
 #根据游标取数据
-GET /_search/screll
+GET /_search/scroll
 {
 	"scroll":"1m",
 	"scroll_id":"id_info"
 }
+
+
+#----------------dsl查询------------------#
+#match_all
+GET fishpond_buyer/profile/_search
+{
+  "query": {
+    "match_all": {}
+  }
+}
+
+
+#match(分词)
+GET fishpond_buyer/profile/_search
+{
+  "query": {
+    "match": {
+      "id": "林丽捷1105_68225070"
+    }
+  }
+}
+
+#match短语(不分词)
+GET fishpond_buyer/profile/_search
+{
+  "query": {
+    "match_phrase": {
+      "id.keyword": "林丽捷1105_68225070"
+    }
+  }
+}
+
+
+#match前缀查询
+GET fishpond_buyer/profile/_search
+{
+  "query": {
+    "match_phrase_prefix": {
+      "id": "林丽捷"
+    }
+  }
+}
+
+#multi match查询(多字段匹配)
+GET fishpond_buyer/profile/_search
+{
+  "query": {
+    "multi_match": {
+      "query": "614339066737",
+      "fields": ["bought_spu_ids.all","inquired_spu_ids.last_30_day"]
+    }
+  }
+}
+
+#term查询 
+GET fishpond_buyer/profile/_search
+{
+  "query": {
+    "term": {
+      "id.keyword": "林丽捷1105_68225070"
+    }
+  }
+}
+
+#terms查询 
+GET fishpond_buyer/profile/_search
+{
+  "query": {
+    "terms": {
+      "bought_spu_ids.all": ["614339066737"]
+    }
+  }
+}
+
+#范围查询 
+#gt: greater than 大于
+#gte: greater than or equal 大于等于
+#lt: less than 小于
+#lte: less than or equal 小于等于
+GET fishpond_buyer/profile/_search
+{
+  "query": {
+    "range": {
+      "update_time_ms": {
+        "gte": 1596321053101,
+        "lte": 1596321059101
+      }
+    }
+  }
+}
+
+GET fishpond_buyer/profile/_search
+{
+  "query": {
+    "range": {
+      "update_time_ms": {
+        "from":1596321053101,
+        "to":null
+      }
+    }
+  }
+}
+
+#bool查询 
+GET fishpond_buyer/profile/_search
+{
+  "query": {
+    "bool": {
+      "must": [
+        {
+          "match": {
+            "store_id": "68225070"
+          }
+        }
+      ],
+      "must_not": [
+        {
+          "term": {
+            "buyer_nick.keyword": {
+              "value": "林丽捷1105"
+            }
+          }
+        }
+      ],
+      "should": [
+        {"match": {
+          "buyer_nick.keyword": "章正国"
+        }},
+        {"match": {
+          "buyer_nick.keyword": "惜诺小小"
+        }}
+      ]
+    }
+  }
+}
+
+GET fishpond_buyer/profile/_search
+{
+  "query": {
+    "bool": {
+      "filter": [
+        {
+          "terms":{
+            "bought_spu_ids.all": ["614339066737"]
+          }
+        }
+      ]
+    }
+  }
+}
+
+
+GET fishpond_buyer/profile/_search
+{
+  "query": {
+    "bool": {
+      "must": [
+        {
+          "match": {
+            "store_id": "68225070"
+          }
+        }
+      ],
+      "must_not": [
+        {
+          "term": {
+            "buyer_nick.keyword": {
+              "value": "林丽捷1105"
+            }
+          }
+        }
+      ],
+      "should": [
+        {"match": {
+          "buyer_nick.keyword": "章正国"
+        }},
+        {"match": {
+          "buyer_nick.keyword": "惜诺小小"
+        }}
+      ],
+      "filter": {
+        "terms": {
+          "region.province.keyword": [
+            "江苏省"
+          ]
+        }
+      }
+    }
+  }
+}
+
+
+GET fishpond_buyer/profile/_search
+{
+  "from": 1000,
+  "size": 2,
+  "query": {
+    "match_all": {}
+  },
+  "_source": {
+    "includes": [
+      "buyer_nick"
+    ],
+    "excludes": []
+  }
+}
+
+
+#scroll create
+GET fishpond_buyer/profile/_search?scroll=1m
+{
+  "from": 0,
+  "size": 2,
+  "query": {
+    "match_all": {}
+  },
+  "_source": {
+    "includes": [
+      "buyer_nick"
+    ],
+    "excludes": []
+  }
+}
+
+#scroll search
+GET _search/scroll
+{
+  "scroll":"1m",
+  "scroll_id":"DnF1ZXJ5VGhlbkZldGNoGAAAAAAAPHomFjZIQWd5cUgyU1pxZHRhRTBvNFpseXcAAAAAADxb2RYzRzl3SE45OFJqaVN1MkdLSHlUb3dnAAAAAAA7ukkWWGRHUHNUSzhULVdKc2dYTWUwV2puZwAAAAAAPEzmFnZOSGdSMjUzUkJLalUwOE0yVGV1a2cAAAAAADx6JxY2SEFneXFIMlNacWR0YUUwbzRabHl3AAAAAAA8hdMWeEk3eHF3Q0VTLUtfbTc2TnBuR2RyZwAAAAAAPEA4Fl9OLTZCb0pDUzRHbVdrMFdQVkNmbVEAAAAAADxb2hYzRzl3SE45OFJqaVN1MkdLSHlUb3dnAAAAAAA8QDkWX04tNkJvSkNTNEdtV2swV1BWQ2ZtUQAAAAAAPFvbFjNHOXdITjk4UmppU3UyR0tIeVRvd2cAAAAAADyF1BZ4STd4cXdDRVMtS19tNzZOcG5HZHJnAAAAAAA8W9wWM0c5d0hOOThSamlTdTJHS0h5VG93ZwAAAAAAPHopFjZIQWd5cUgyU1pxZHRhRTBvNFpseXcAAAAAAD3xRBZPenM5bFEwWVIyNnFmbnhsTHlSR2tnAAAAAABHo7MWM2cwaE1LODdTR3VlNlNPMkUxSzlyZwAAAAAASQjSFmdPOEZvLVVrU0Z5MTFCb1RzZkphaGcAAAAAADwPxhZSMHFnVWhDdVNseW1DcmNTUlVMUTNBAAAAAAA8eigWNkhBZ3lxSDJTWnFkdGFFMG80Wmx5dwAAAAAAO9XHFnBzbTBMWllsUVk2VU1YaW9jQm54c2cAAAAAADxM5xZ2TkhnUjI1M1JCS2pVMDhNMlRldWtnAAAAAAA78ywWYVgwdm90TWFTcVd1VUswaklHU2lBdwAAAAAAR6O0FjNnMGhNSzg3U0d1ZTZTTzJFMUs5cmcAAAAAAEkI0xZnTzhGby1Va1NGeTExQm9Uc2ZKYWhnAAAAAAA8W90WM0c5d0hOOThSamlTdTJHS0h5VG93Zw=="
+}
+
+
+
+
+
 
 
 
