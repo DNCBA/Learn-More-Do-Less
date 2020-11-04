@@ -27,6 +27,15 @@ POST _analyze
 #删除索引
 DELETED /school
 
+#根据查询结果删除
+DELETE fishpond_buyer/profile/_delete_by_query
+{
+	"query":{
+		"match_all":{}
+	}
+}
+
+
 #创建索引
 PUT /school
 {
