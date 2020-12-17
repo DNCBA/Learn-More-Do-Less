@@ -53,6 +53,11 @@
 3. 配置 Jvm 打印对应的 GC 日志
 
    ```pr
+   #常用配置
+   -Xms30m 初始堆空间
+   -Xmx30m 最大堆空间
+   -Xmn10m 新生代空间
+   -Xss2m 栈大小
    #输出日志
    -XX:+PrintGCTimeStamps
    -XX:+PrintGCDetails
