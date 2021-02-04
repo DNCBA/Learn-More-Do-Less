@@ -114,6 +114,11 @@ sudo passwd [userName]
  
  - ssh
  ```bash
+ #开启ssh登录
+systemctl enable sshd.service
+systemctl start sshd.service
+systemctl restart sshd.service
+
  #远程连接
 ssh [-p port] userName@host
 
@@ -182,7 +187,7 @@ yay -S latte-dock
 ```
 
 ### 包管理工具
- - pacman
+ - pacman & yay
  ```bash
  #软件查找
  pacman -Ss keyWord
@@ -206,8 +211,4 @@ yay -S latte-dock
 
 ```
  
- - yay
- ```bash
-命令同 pacman 更换aur源
-```
  
