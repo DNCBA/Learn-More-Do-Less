@@ -82,7 +82,7 @@ Java 知识点，持续迭代中。
 - [Regexp](./MD/Tools/Regexp.md)
 - [Docker](./MD/Tools/Docker.md)
 - [ELK](./MD/Tools/ELK.md)
-- Grafana
+- [manjaro](./MD/Tools/Manjaro.md)
 
 # 杂谈
 
